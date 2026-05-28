@@ -5,6 +5,7 @@ import { getPostDetail, getBookmarkedPosts } from '@/api/post-api';
 
 import Navbar from '@/my-components/Navbar';
 import PostCard from '@/my-components/reusables/PostCard';
+import PostCardSkelly from '@/my-components/reusables/PostCardSK';
 
 const Detail = () => {
   const { postId } = useParams<{ postId: string }>();
@@ -35,7 +36,19 @@ const Detail = () => {
     return new Set(allBookmarks.map((p) => p.id));
   }, [bookmarkedData]);
 
-  if (isLoading) return <p className='text-white'>Loading...</p>;
+  if (isLoading) {
+    return (
+      <>
+        <Navbar />
+        <section className='flex flex-col w-screen h-screen bg-black text-white items-center'>
+          <div className='mt-[84px] sm:mt-[100px]'>
+            <PostCardSkelly />
+          </div>
+        </section>
+      </>
+    );
+  }
+
   if (isError) return <p className='text-red-500'>Error loading feed</p>;
 
   const post = postData?.data;
@@ -46,12 +59,14 @@ const Detail = () => {
   return (
     <>
       <Navbar />
-      <section className='flex flex-col w-screen h-screen bg-black text-white justify-center items-center '>
-        <PostCard
-          key={post.id}
-          post={post}
-          bookmarked={bookmarkedIds.has(post.id)}
-        />
+      <section className='flex flex-col w-screen h-screen bg-black text-white items-center '>
+        <div className='mt-[84px] sm:mt-[100px]'>
+          <PostCard
+            key={post.id}
+            post={post}
+            bookmarked={bookmarkedIds.has(post.id)}
+          />
+        </div>
       </section>
     </>
   );

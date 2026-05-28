@@ -168,7 +168,7 @@ const Logi = () => {
       </div>
       <img
         src={BG}
-        className='fixed bottom-0 left-1/2 -translate-x-1/2  w-[414.56px] h-[233.19px] overflow-hidden sm:w-[1920px] sm:h-[1080px]'
+        className='fixed bottom-0 left-1/2 -translate-x-1/2  w-full h-[233.19px] overflow-hidden sm:w-[1920px] sm:h-[1080px]'
         alt='Background'
       />
     </section>

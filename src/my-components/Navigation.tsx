@@ -14,7 +14,7 @@ const Navigation = () => {
         onClick={() => {
           navigate('/home');
         }}
-        className='flex flex-col w-[94px] gap-[2px] items-center justify-center'
+        className='flex flex-col w-[94px] gap-[2px] items-center justify-center hover:bg-white/10 hover:scale-105 hover:rounded-2xl hover:px-2 hover:py-2 transition-transform'
       >
         <House className='w-[20px] h-[20px] sm:w-[24px] sm:h-[24px]' />
         <p className='font-bold text-xs sm:text-base sm:tracking-tight'>Home</p>
@@ -23,7 +23,7 @@ const Navigation = () => {
         onClick={() => {
           navigate('/new');
         }}
-        className='flex flex-col w-[44px] h-[44px] rounded-full p-[7.33px] gap-[7.33px] bg-[#6936F2] items-center justify-center'
+        className='flex flex-col w-[44px] h-[44px] rounded-full p-[7.33px] gap-[7.33px] bg-[#6936F2] items-center justify-center hover:bg-[#8158ef] hover:scale-125 hover:px-2 hover:py-2 transition-transform'
       >
         <Plus className='w-[22px] h-[22px] sm:w-[24px] sm:h-[24px]' />
       </button>
@@ -31,7 +31,7 @@ const Navigation = () => {
         onClick={() => {
           navigate('/profile/me');
         }}
-        className='flex flex-col w-[94px] gap-[2px] items-center justify-center'
+        className='flex flex-col w-[94px] gap-[2px] items-center justify-center hover:bg-white/10 hover:scale-105 hover:rounded-2xl hover:px-2 hover:py-2 transition-transform'
       >
         <UserRound className='w-[20px] h-[20px] sm:w-[24px] sm:h-[24px]' />
         <p className='font-bold text-xs sm:text-base sm:tracking-tight'>

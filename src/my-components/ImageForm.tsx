@@ -83,33 +83,33 @@ const UploadImage = ({ file, onChange }: UploadImageProps) => {
               className='object-contain'
             />
           </div>
-          <div className='flex flex-row w-[286px] h-[40px] justify-end gap-[12px] bg-white items-center'>
+          <div className='flex flex-row w-[286px] h-[40px] justify-end gap-[12px] bg-none items-center'>
             <button
               type='button'
-              className='flex flex-row w-[141px] h-[40px] bg-gray-100 rounded hover:bg-gray-200 px-[12px] gap-[6px] text-[12px] items-center border border-[#D5D7DA]'
+              className='flex flex-row w-[141px] h-[40px] bg-gray-100 rounded hover:bg-gray-300 px-[12px] gap-[6px] text-[12px] items-center border border-[#D5D7DA] text-black'
               onClick={triggerUpload}
             >
-              <ArrowUpToLine className='w-[20px] h-[20px]' />
+              <ArrowUpToLine className='w-[20px] h-[20px] ' />
               Change Image
             </button>
 
             <AlertDialog>
               <AlertDialogTrigger asChild>
-                <button className='flex flex-row w-[141px] h-[40px] bg-gray-100 rounded hover:bg-gray-200 px-[12px] gap-[6px] text-[12px] text-[#361a21] items-center justify-center border border-[#D5D7DA]'>
+                <button className='flex flex-row w-[141px] h-[40px] bg-gray-100 rounded hover:bg-gray-300 px-[12px] gap-[6px] text-[12px] text-[#361a21] items-center justify-center border border-[#D5D7DA]'>
                   <Trash className='w-[20px] h-[20px]' />
                   Delete Image
                 </button>
               </AlertDialogTrigger>
 
-              <AlertDialogContent className='fixed top-1/2 left-1/2 flex flex-col w-full sm:w-[537px] h-[224px] -translate-x-1/2 -translate-y-1/2 rounded-4xl bg-white p-[32px] gap-[24px] ml-[6px] mr-[6px]'>
+              <AlertDialogContent className='fixed top-1/2 left-1/2 flex flex-col w-full sm:w-[537px] h-[224px] -translate-x-1/2 -translate-y-1/2 rounded-4xl bg-black p-[32px] gap-[24px] ml-[6px] mr-[6px] text-white'>
                 <AlertDialogTitle className='text-[20px] font-bold'>
                   Delete
                 </AlertDialogTitle>
-                <AlertDialogDescription className='text-[16px] text-[#535862]'>
+                <AlertDialogDescription className='text-[16px] text-white'>
                   Are you sure to delete?
                 </AlertDialogDescription>
                 <div className='flex flex-row w-full h-[48px] gap-[8px] justify-end'>
-                  <AlertDialogCancel className='w-[120px] h-[48px] rounded-full hover:bg-gray-200 text-[14px] font-semibold gap-[8px] p-[8px]'>
+                  <AlertDialogCancel className='w-[120px] h-[48px] rounded-full hover:bg-gray-300 text-[14px] font-semibold gap-[8px] p-[8px] text-black'>
                     Cancel
                   </AlertDialogCancel>
                   <AlertDialogAction

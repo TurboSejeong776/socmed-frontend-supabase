@@ -65,9 +65,9 @@ const NewPost = () => {
     mutate(formData);
   };
   return (
-    <section className='flex flex-col w-screen h-screen bg-black text-white items-center'>
+    <section className='flex flex-col w-screen min-h-[1080px] bg-black text-white items-center'>
       <ProfileNavbar />
-      <div className='flex flex-col w-[361px] gap-[16px] mt-[64px] bg-black text-white sm:w-[452px] sm:gap-[24px]'>
+      <div className='flex flex-col w-[361px] gap-[16px] mt-[64px] bg-black text-white sm:w-[452px] sm:gap-[24px] sm:min-h-auto'>
         <div
           id='desktopExclusive'
           className='hidden sm:flex flex-row gap-[12px]'

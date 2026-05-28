@@ -59,6 +59,7 @@ const Navbar = () => {
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
+    isLoading,
   } = useInfiniteQuery({
     queryKey: ['userSearch', keyword],
     queryFn: async ({ pageParam = 1 }) => {
@@ -99,22 +100,32 @@ const Navbar = () => {
                 </Button>
               </PopoverTrigger>
               <PopoverContent className='flex flex-col w-screen h-screen border-none gap-[16px] p-[16px] bg-black '>
-                {users.length === 0 && <p className='text-white'>No results</p>}
-                {users.map((user) => (
-                  <div
-                    key={user.id}
-                    onClick={() => navigate(`/profile/${user.username}`)}
-                    className='cursor-pointer'
-                  >
-                    <ProfileCard key={user.id} user={user} />
-                  </div>
-                ))}
+                {isLoading ? (
+                  <p className='text-white'>Please wait a moment...</p>
+                ) : (
+                  <>
+                    {users.length === 0 && (
+                      <p className='text-white'>No results</p>
+                    )}
+                    {users.map((user) => (
+                      <div
+                        key={user.id}
+                        onClick={() => navigate(`/profile/${user.username}`)}
+                        className='cursor-pointer'
+                      >
+                        <ProfileCard user={user} />
+                      </div>
+                    ))}
+                  </>
+                )}
               </PopoverContent>
             </Popover>
           </>
         ) : (
           <>
-            <img src={Lazy} alt='logo' className='w-[137px] h-[36px]' />
+            <button onClick={() => navigate('/home')}>
+              <img src={Lazy} alt='logo' className='w-[137px] h-[36px]' />
+            </button>
             <div className='flex flex-row w-[195.5px] gap-[16px] items-center justify-end'>
               <Search
                 className='w-[24px] h-[24px] text-white'
@@ -170,36 +181,44 @@ const Navbar = () => {
        This is the desktop version of the navbar 
         //////////////////// */}
       <div className='hidden sm:flex flex-row w-full justify-between items-center'>
-        <img src={Lazy} alt='logo' className='w-[137px] h-[36px]' />
+        <button onClick={() => navigate('/home')} className='cursor-pointer'>
+          <img src={Lazy} alt='logo' className='w-[137px] h-[36px]' />
+        </button>
         <Popover open={keyword.length > 0}>
           <PopoverTrigger className='flex w-[300px] sm:w-[400px]'>
             <Searchbar keyword={keyword} setKeyword={setKeyword} />
           </PopoverTrigger>
           <PopoverContent className='hidden sm:flex w-[491px] gap-[24px] p-[20px] bg-[#0A0D12] border border-[#181D27] rounded-[20px]'>
-            {users.length === 0 ? (
-              <p className='text-white'>No results</p>
+            {isLoading ? (
+              <p className='text-white'>Please wait a moment...</p>
             ) : (
-              <ScrollArea className='h-[384px]'>
-                <div className='flex flex-col gap-[16px]'>
-                  {users.map((user) => (
-                    <div
-                      key={user.id}
-                      onClick={() => navigate(`/profile/${user.username}`)}
-                      className='cursor-pointer'
-                    >
-                      <ProfileCard key={user.id} user={user} />
+              <>
+                {users.length === 0 ? (
+                  <p className='text-white'>No results</p>
+                ) : (
+                  <ScrollArea className='h-[384px]'>
+                    <div className='flex flex-col gap-[16px]'>
+                      {users.map((user) => (
+                        <div
+                          key={user.id}
+                          onClick={() => navigate(`/profile/${user.username}`)}
+                          className='cursor-pointer'
+                        >
+                          <ProfileCard user={user} />
+                        </div>
+                      ))}
+                      {hasNextPage && (
+                        <button
+                          onClick={() => fetchNextPage()}
+                          className='mt-2 p-2 bg-[#6936F2] text-white rounded'
+                        >
+                          {isFetchingNextPage ? 'Loading...' : 'Load More'}
+                        </button>
+                      )}
                     </div>
-                  ))}
-                  {hasNextPage && (
-                    <button
-                      onClick={() => fetchNextPage()}
-                      className='mt-2 p-2 bg-[#6936F2] text-white rounded'
-                    >
-                      {isFetchingNextPage ? 'Loading...' : 'Load More'}
-                    </button>
-                  )}
-                </div>
-              </ScrollArea>
+                  </ScrollArea>
+                )}
+              </>
             )}
           </PopoverContent>
         </Popover>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router';
 
@@ -10,6 +10,8 @@ import { getUserByUsername, getUserPosts, getUserLikes } from '@/api/user-api';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { ScrambleNumber } from '@/my-components/reusables/ScrambleNumber';
+import UserProfileLoading from '@/my-components/reusables/UserProfileLoading';
 
 import { Send, Image, Heart } from 'lucide-react';
 
@@ -39,7 +41,14 @@ const UserProfile = () => {
   });
 
   const user = profileData?.data;
-  const [isFollowing, setIsFollowing] = useState(user?.isFollowing || false);
+
+  const [isFollowing, setIsFollowing] = useState(false);
+  useEffect(() => {
+    if (user) {
+      setIsFollowing(user.isFollowing);
+    }
+  }, [user]);
+
   const [followLoading, setFollowLoading] = useState(false);
 
   const followMutation = useMutation({
@@ -64,7 +73,7 @@ const UserProfile = () => {
   };
 
   if (profileLoading || likedLoading || postLoading) {
-    return <p className='text-white'>Loading...</p>;
+    return <UserProfileLoading />;
   }
 
   const stat = profileData!.data.counts;
@@ -114,8 +123,8 @@ const UserProfile = () => {
                 {followLoading
                   ? 'Loading…'
                   : isFollowing
-                  ? 'Following'
-                  : 'Follow'}
+                    ? 'Following'
+                    : 'Follow'}
               </Button>
               <Button className='flex w-[40px] h-[40px] sm:w-[48px] sm:h-[48px] border-[1px] border-[#181D27] bg-transparent rounded-full'>
                 <Send className='w-[24px] h-[24px]' />
@@ -134,7 +143,7 @@ const UserProfile = () => {
               className='flex flex-col w-full gap-[2px] items-center justify-center'
             >
               <p className='font-bold text-lg sm:text-xl tracking-tight'>
-                {stat.post}
+                <ScrambleNumber value={stat.post} />
               </p>
               <p className='text-xs sm:text-base text-[#A4A7AE]'>
                 {stat.post > 1 ? 'Posts' : 'Post'}
@@ -146,7 +155,7 @@ const UserProfile = () => {
               className='flex flex-col w-full gap-[2px] items-center justify-center'
             >
               <p className='font-bold text-lg sm:text-xl tracking-tight'>
-                {stat.followers}
+                <ScrambleNumber value={stat.followers} />
               </p>
               <p className='text-xs sm:text-base text-[#A4A7AE]'>
                 {stat.followers > 1 ? 'Followers' : 'Follower'}
@@ -158,7 +167,7 @@ const UserProfile = () => {
               className='flex flex-col w-full gap-[2px] items-center justify-center'
             >
               <p className='font-bold text-lg sm:text-xl tracking-tight'>
-                {stat.following}
+                <ScrambleNumber value={stat.following} />
               </p>
               <p className='text-xs sm:text-base text-[#A4A7AE]'>
                 {stat.following > 1 ? 'Followings' : 'Following'}
@@ -170,7 +179,7 @@ const UserProfile = () => {
               className='flex flex-col w-full gap-[2px] items-center justify-center'
             >
               <p className='font-bold text-lg sm:text-xl tracking-tight'>
-                {stat.likes}
+                <ScrambleNumber value={stat.likes} />
               </p>
               <p className='text-xs sm:text-base text-[#A4A7AE]'>
                 {stat.likes > 1 ? 'Likes' : 'Like'}

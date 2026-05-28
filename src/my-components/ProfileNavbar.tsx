@@ -72,10 +72,12 @@ const ProfileNavbar = () => {
        This is the desktop version of the navbar 
         //////////////////// */}
       <div className='hidden sm:flex w-full justify-between items-center'>
-        <img src={Lazy} alt='logo' className='w-[137px] h-[36px]' />
+        <button onClick={() => navigate('/home')} className='cursor-pointer'>
+          <img src={Lazy} alt='logo' className='w-[137px] h-[36px]' />
+        </button>
         <Searchbar keyword={keyword} setKeyword={setKeyword} />
         {isLoggedIn ? (
-          <div className='flex flex-row gap-[13px]'>
+          <div className='flex flex-row gap-[13px] items-center'>
             <img
               src={Man}
               alt='pfp'

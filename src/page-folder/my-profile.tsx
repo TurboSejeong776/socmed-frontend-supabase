@@ -2,6 +2,8 @@ import { useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router';
 
 import ProfileNavbar from '@/my-components/ProfileNavbar';
+import MyProfileLoading from '@/my-components/reusables/MyProfileLoading';
+import { ScrambleNumber } from '@/my-components/reusables/ScrambleNumber';
 
 import { getMyProfile } from '@/api/profile-api';
 import { getBookmarkedPosts, getMyLikes } from '@/api/post-api';
@@ -42,7 +44,7 @@ const MyProfile = () => {
   });
 
   if (profileLoading || savedLoading || likedLoading || postLoading) {
-    return <p className='text-white'>Loading...</p>;
+    return <MyProfileLoading />;
   }
 
   const stat = profileData!.data.stats;
@@ -108,7 +110,7 @@ const MyProfile = () => {
               className='flex flex-col w-full gap-[2px] items-center justify-center'
             >
               <p className='font-bold text-lg sm:text-xl tracking-tight'>
-                {stat.posts}
+                <ScrambleNumber value={stat.posts} />
               </p>
               <p className='text-xs sm:text-base text-[#A4A7AE]'>
                 {stat.posts > 1 ? 'Posts' : 'Post'}
@@ -120,7 +122,7 @@ const MyProfile = () => {
               className='flex flex-col w-full gap-[2px] items-center justify-center'
             >
               <p className='font-bold text-lg sm:text-xl tracking-tight'>
-                {stat.followers}
+                <ScrambleNumber value={stat.followers} />
               </p>
               <p className='text-xs sm:text-base text-[#A4A7AE]'>
                 {stat.followers > 1 ? 'Followers' : 'Follower'}
@@ -132,7 +134,7 @@ const MyProfile = () => {
               className='flex flex-col w-full gap-[2px] items-center justify-center'
             >
               <p className='font-bold text-lg sm:text-xl tracking-tight'>
-                {stat.following}
+                <ScrambleNumber value={stat.following} />
               </p>
               <p className='text-xs sm:text-base text-[#A4A7AE]'>
                 {stat.following > 1 ? 'Followings' : 'Following'}
@@ -144,7 +146,7 @@ const MyProfile = () => {
               className='flex flex-col w-full gap-[2px] items-center justify-center'
             >
               <p className='font-bold text-lg sm:text-xl tracking-tight'>
-                {stat.likes}
+                <ScrambleNumber value={stat.likes} />
               </p>
               <p className='text-xs sm:text-base text-[#A4A7AE]'>
                 {stat.likes > 1 ? 'Likes' : 'Like'}

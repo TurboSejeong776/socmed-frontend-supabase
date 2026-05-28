@@ -11,28 +11,28 @@ const PostCardSkelly = () => {
         <img
           src={placeholder}
           alt='pfp'
-          className='w-[44px] h-[44px] sm:w-[64px] sm:h-[64px] rounded-full'
+          className='w-[44px] h-[44px] sm:w-[64px] sm:h-[64px] rounded-full animate-pulse'
         />
         <div className='flex flex-col w-full justify-center'>
-          <Skeleton className='w-full' />
-          <Skeleton className='w-full' />
+          <Skeleton className='w-full animate-pulse bg-[#878787]' />
+          <Skeleton className='w-full animate-pulse bg-[#878787]' />
         </div>
       </div>
       <img
         src={placeholder2}
         alt='postImage'
-        className='w-[361px] max-h-[361px] sm:w-[600px] sm:max-h-[600px] overflow-hidden'
+        className='w-[361px] max-h-[361px] sm:w-[600px] sm:max-h-[600px] overflow-hidden animate-pulse'
       />
       <div className='flex flex-row w-full justify-between'>
         <div className='flex flex-row min-w-[168px] gap-[12px] sm:gap-[16px] items-center '>
-          <div className='flex flex-row gap-[6px] items-center '>
+          <div className='flex flex-row items-center '>
             {/* Clicking the count summons LikeList who has dialog and drawer form */}
             <Heart className={`w-[24px] h-[24px] text-white cursor-pointer`} />
             {/* LikeList contains both Drawer (base) and Dialog (sm) forms */}
 
             <Skeleton className='w-full' />
           </div>
-          <div className='flex flex-row gap-[6px] items-center'>
+          <div className='flex flex-row  items-center'>
             {/* Clicking the count summons CommentList who has dialog and drawer form */}
             <MessageSquareMore className={`w-[24px] h-[24px] text-white `} />
 
