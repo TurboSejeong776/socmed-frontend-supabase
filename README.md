@@ -4,11 +4,11 @@ This is an instagram-style social media site made as my portfolio.
 
 # Features
 
-+Login and registration
-+Mobile and desktop layout
-+Homepage with infinite scroll
-+Post, like, comment, save, and follow functions
-+Backend provided with Supabase
+- Login and registration
+- Mobile and desktop layout
+- Homepage with infinite scroll
+- Post, like, comment, save, and follow functions
+- Backend provided with Supabase
 
 # How to use
 
